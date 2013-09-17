@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import mod.Group;
 import mod.GroupDao;
@@ -145,7 +146,10 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, id);
 			res = stat.executeQuery();	
-			u = new User (id, res.getString(2), res.getString(3));		
+			if (res.next()) {
+				u = new User (id, res.getString(2), res.getString(3));	
+			}
+				
 		} 
 		
 		catch (SQLException e) {
@@ -191,6 +195,30 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	@Override
+	public ArrayList<User> allUsers() {
+		ArrayList<User> list=new ArrayList<>();
+		String query = "SELECT * FROM User";
+		ResultSet res;
+		openConnection();
+		try {
+			Statement stat = connection.createStatement();
+			res = stat.executeQuery(query);	
+			
+			while (res.next()) {
+				list.add(new User (res.getInt(1), res.getString(2), res.getString(3)));	
+			}
+				
+		} 
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		return list;
 	}
 
 }
