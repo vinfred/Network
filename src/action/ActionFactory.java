@@ -8,15 +8,14 @@ public class ActionFactory {
 	static HashMap<String, Action> hash = new HashMap<>();
 	
 	static {
-		hash.put ("users", new UserAction());
-		hash.put ("deleteUser", new DeleteAction());
+		hash.put ("/users", new UserAction());
+		hash.put ("/deleteUser", new DeleteAction());
 	}
 	
 	public static Action getAction (HttpServletRequest request) {
-		String url = request.getRequestURL().toString();
-		String[] tokens = url.split("/");
-		String lastToken = tokens[tokens.length-1];
-		return hash.get(lastToken);
+		String url = request.getServletPath();
+		System.out.println(url);
+		return hash.get(url);
 	}
 
 }

@@ -1,5 +1,7 @@
 package web;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -41,11 +43,14 @@ public class SimpleServlet extends HttpServlet {
 	}
 	
 	protected void doResponce(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Action action = ActionFactory.getAction(request);
-		String res = action.execute(request);		
+
+			Action action = ActionFactory.getAction(request);
+			String res = action.execute(request);		
 		
-		RequestDispatcher rd = request.getRequestDispatcher(res);
-		rd.forward(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher(res);
+			rd.forward(request, response);
+		
+
 	}
 }
 

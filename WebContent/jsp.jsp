@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<LINK href="styles/main.css" rel="stylesheet" type="text/css"> 
+	<meta http-equiv="AContent-Type" content="text/html; charset=UTF-8">
+	<LINK href="main.css" rel="stylesheet" type="text/css"> 
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<title>Google Chew::Users</title>
@@ -32,7 +32,7 @@
 			<table>
 				<% 
 					BaseDao db = new BaseDao();
-					ArrayList<User> users = db.allUsers;
+					ArrayList<User> users = db.allUsers();
 					
 					for (User e: users) {
 

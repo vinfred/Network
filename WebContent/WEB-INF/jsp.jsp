@@ -1,10 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="db.*" import="java.util.*" import="mod.*"%>
+    pageEncoding="UTF-8" import="db.*" import="java.util.*" import="mod.*"  import="java.io.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<LINK href="styles/main.css" rel="stylesheet" type="text/css"> 
+	<meta http-equiv="CAontent-Type" content="text/html; charset=UTF-8">
+	<%
+	//String url = request.getContextPath() + "/WebContent/styles/main.css";
+	//out.println("<link href=\"main.css\" rel=\"stylesheet\" type=\"text/css\">");
+	%>
+	<%
+	out.println("<style type=\"text/css\">");
+	FileInputStream fis = new FileInputStream(new File("/home/mirka/workspace/Network/WebContent/styles/main.css"));
+	byte[] buff = new byte[26400];
+	String res = "";
+	try {
+		fis.read(buff);
+		res = new String(buff);
+	}
+	catch (Exception ex ) {ex.printStackTrace();};
+	
+	out.println(res);
+	out.println("</style>");
+	%>
+	<!-- <LINK href="/home/mirka/workspace/Network/WebContent/WEB-INF/styles/main.css" rel="stylesheet" type="text/css"> -->
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<title>Google Chew::Users</title>
@@ -39,6 +57,8 @@
 						out.print("<tr><td>"+e.getId()+". </td><td>"+e.getName()+ "</td><td>"+e.getSurname()+"</td> "
 								+"<td> <form action=\"deleteUser\" method=\"post\"><input type=\"hidden\" name = \"id\" value=\""+
 								e.getId()+"\"><input type=\"submit\" value=\"Delete\" id="+e.getId()
+								+ "></form></td><td><form action=\"EditUser\" method=\"post\"><input type=\"hidden\" name = \"id\" value=\""+
+								e.getId()+"\"><input type=\"submit\" value=\"Edit\" id="+e.getId()
 								+ "></form></td></tr>\n");
 					}
 					if (users.size()==0) {
