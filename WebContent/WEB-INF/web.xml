@@ -16,16 +16,8 @@
   </servlet>  
   <servlet-mapping>
     <servlet-name>SimpleServlet</servlet-name>
-    <url-pattern>/chew</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
   
-  <servlet>  
-        <servlet-name>DeleteUser</servlet-name>  
-        <servlet-class>web.DeleteUser</servlet-class>  
-  </servlet>  
-  <servlet-mapping>  
-        <servlet-name>DeleteUser</servlet-name>  
-        <url-pattern>/DeleteUser</url-pattern>  
-  </servlet-mapping>  
   
 </web-app>
