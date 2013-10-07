@@ -3,6 +3,7 @@ package web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,23 +32,27 @@ public class DeleteUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String value = (String)request.getAttribute("param");
-		Integer id = Integer.valueOf(value);
-
-		db.deleteUser(db.findUserById(Integer.valueOf(id)));  
-		
-		PrintWriter pw = response.getWriter();		
-		pw.write("hopeless");	
-	
-		
+		doResponce(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doResponce(request, response);
+	}
+	
+	protected void doResponce(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter pw = response.getWriter();		
+		pw.write("hopeless");	
+		
+		String value = (String)request.getParameter("id");
+		Integer id = Integer.valueOf(value);
+
+		db.deleteUser(db.findUserById(Integer.valueOf(id)));  
+		
+		RequestDispatcher RD = request.getRequestDispatcher("chew");  
+		RD.forward(request, response); 
 	}
 
 }
