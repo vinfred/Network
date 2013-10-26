@@ -19,5 +19,25 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   
+  <listener>
+      <listener-class>web.MyServletContextListener</listener-class>
+  </listener>
+    <context-param>
+    <param-name>url</param-name>
+    <param-value>jdbc:mysql://localhost/</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>database</param-name>
+  	<param-value>ee_network</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>user</param-name>
+  	<param-value>mirka</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>password</param-name>
+  	<param-value>booboo</param-value>
+  </context-param>
+  
   
 </web-app>

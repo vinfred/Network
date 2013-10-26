@@ -1,44 +1,37 @@
 package db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import mod.Group;
-import mod.GroupDao;
-import mod.MessDao;
-import mod.Message;
-import mod.User;
-import mod.UserDao;
+import java.sql.*;
+import java.util.*;
+import mod.*;
 
 public class BaseDao implements UserDao, GroupDao, MessDao {
 	
-	Connection connection;
-
-
-	void openConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded\n");
-			
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/ee_network", "mirka", "booboo");
-			System.out.println("DB loaded\n");
-		} 
-		
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
+	Connection connection=null;
+	
+	public BaseDao (Connection connection) {
+		this.connection = connection;
 	}
+
+//
+//	void openConnection() {
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//			System.out.println("Driver loaded\n");
+//			
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost/ee_network", "mirka", "booboo");
+//			System.out.println("DB loaded\n");
+//		} 
+//		
+//		catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}		
+//	}
 	
 	
 	void createUserTable() {
-		openConnection();				
+		//openConnection();	
 		
 		String query = "CREATE TABLE IF NOT EXISTS User (id INT NOT NULL PRIMARY KEY,"
 				+ "name VARCHAR(50) NOT NULL, surname VARCHAR(50) NOT NULL );";
@@ -142,7 +135,7 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		User u = null;
 		String query = "SELECT * FROM User WHERE id=?";
 		ResultSet res;
-		openConnection();
+		//openConnection();
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, id);
 			res = stat.executeQuery();	
@@ -162,7 +155,7 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	public User updateUser(User user) {
 		String query = "UPDATE User SET name=user.getName(), surname=user.getSurname() WHERE id=?;";
 		
-		openConnection();
+		//openConnection();
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, user.getId());			
 			stat.execute();
@@ -183,7 +176,7 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	public void deleteUser(User user) {
 		String query = "DELETE FROM User WHERE id=?";
 		
-		openConnection();
+		//openConnection();
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, user.getId());			
 			stat.execute();
@@ -203,7 +196,7 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		ArrayList<User> list=new ArrayList<>();
 		String query = "SELECT * FROM User";
 		ResultSet res;
-		openConnection();
+		//openConnection();
 		try {
 			Statement stat = connection.createStatement();
 			res = stat.executeQuery(query);	
@@ -220,5 +213,4 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		
 		return list;
 	}
-
 }
