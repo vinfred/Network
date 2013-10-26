@@ -49,7 +49,7 @@
 		<div class="body">
 			<table>
 				<% 
-					BaseDao db = new BaseDao();
+					//BaseDao db = new BaseDao();
 					ArrayList<User> users = (ArrayList<User>)request.getAttribute("users");
 					
 					for (User e: users) {

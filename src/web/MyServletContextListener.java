@@ -19,10 +19,10 @@ public class MyServletContextListener implements ServletContextListener {
 		ServletContext sc = event.getServletContext();
 		 
     	String url = sc.getInitParameter("url");
-    	String user_name = sc.getInitParameter("user_name");
+    	String user = sc.getInitParameter("user");
     	String password = sc.getInitParameter("password");
     	String database = sc.getInitParameter("database");
-    	Database db = new Database(url + database, user_name, password);
+    	Database db = new Database(url + database, user, password);
     	//System.out.println("in the listener!!");
     	sc.setAttribute("db", db);
 		

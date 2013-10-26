@@ -6,12 +6,12 @@ public class Database {
 	 
 		private Connection conn = null;
 	 
-		public Database(String url, String user_name, String password) {
+		public Database(String url, String user, String password) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 	 
-				this.conn = DriverManager.getConnection(url, user_name, password);
-	 
+				this.conn = DriverManager.getConnection(url, user, password);
+				
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
