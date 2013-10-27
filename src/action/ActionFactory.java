@@ -10,6 +10,8 @@ public class ActionFactory {
 	static {
 		hash.put ("/users", new UserAction());
 		hash.put ("/deleteUser", new DeleteAction());
+		hash.put ("/addUser", new AddUserAction());
+		hash.put ("/editUser", new EditUserAction());
 	}
 	
 	public static Action getAction (HttpServletRequest request) {

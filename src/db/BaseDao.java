@@ -11,30 +11,13 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	public BaseDao (Connection connection) {
 		this.connection = connection;
 	}
-
-//
-//	void openConnection() {
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			System.out.println("Driver loaded\n");
-//			
-//			connection = DriverManager.getConnection("jdbc:mysql://localhost/ee_network", "mirka", "booboo");
-//			System.out.println("DB loaded\n");
-//		} 
-//		
-//		catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}		
-//	}
-	
-	
-	void createUserTable() {
-		//openConnection();	
 		
+	void createUserTable() {
 		String query = "CREATE TABLE IF NOT EXISTS User (id INT NOT NULL PRIMARY KEY,"
-				+ "name VARCHAR(50) NOT NULL, surname VARCHAR(50) NOT NULL );";
+				+ "email VARCHAR(50) NOT NULL, password VARCHAR(200) NOT NULL,"
+				+ "country VARCHAR(50), city VARCHAR(50),"
+				+ "born DATE, interest VARCHAR(500), profession VARCHAR(100),"
+				+ "name VARCHAR(50), surname VARCHAR(50));";
 
 		try {
 			Statement stat = connection.createStatement();
@@ -97,11 +80,10 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 
 	@Override
 	public User createUser(User user) {
-		int id=0;
-		
+		int id=0;		
 		createUserTable();
-		//openConnection();
-		String query = "INSERT INTO User (id, name, surname ) VALUES (?, ?, ?);";
+		
+		String query = "INSERT INTO User (id, email, password) VALUES (?, ?, ?);";
 		String idQuery = "SELECT max(id) FROM User";
 
 		try (PreparedStatement stat = connection.prepareStatement(query);) {
@@ -113,13 +95,13 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 			}
 			
 			stat.setInt(1, id);
-			stat.setString(2, user.getName());
-			stat.setString(3, user.getSurname());
+			stat.setString(2, user.getEmail());
+			stat.setString(3, user.getPassword());
 			stat.execute();
-			user.setId(id);
-			System.out.println("User #"+user.getId()+" "+user.getName()+" "+user.getSurname()+" created\n");
 			
-			connection.close();
+			user.setId(id);
+			System.out.println("User #"+user.getId()+" "+user.getEmail()+" "+user.getPassword()+" created\n");
+
 			return user;
 		} 
 		
@@ -135,14 +117,13 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		User u = null;
 		String query = "SELECT * FROM User WHERE id=?";
 		ResultSet res;
-		//openConnection();
+
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, id);
 			res = stat.executeQuery();	
 			if (res.next()) {
 				u = new User (id, res.getString(2), res.getString(3));	
-			}
-				
+			}				
 		} 
 		
 		catch (SQLException e) {
@@ -150,18 +131,19 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		}
 		return u;
 	}
-
+	
 	@Override
 	public User updateUser(User user) {
-		String query = "UPDATE User SET name=user.getName(), surname=user.getSurname() WHERE id=?;";
-		
-		//openConnection();
+		String query = "UPDATE User SET email=user.getEmail), password=user.getPassword(), "
+				+ "country=user.getCountry(), city=user.getCity(), "
+				+ "date=user.getBornDate(), profession=user.getProfession(), "
+				+ "name=user.getName(), surname=user.getSurname() WHERE id=?;";
+	
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, user.getId());			
 			stat.execute();
 			System.out.println("User #"+user.getId()+" updated\n");
 			
-			connection.close();
 			return user;
 		} 
 		
@@ -175,14 +157,11 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	@Override
 	public void deleteUser(User user) {
 		String query = "DELETE FROM User WHERE id=?";
-		
-		//openConnection();
+
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, user.getId());			
 			stat.execute();
 			System.out.println("Deleting user#"+user.getId()+"\n");
-			
-			connection.close();
 		} 
 		
 		catch (SQLException e) {
@@ -190,21 +169,19 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		}
 	}
 
-
 	@Override
 	public ArrayList<User> allUsers() {
 		ArrayList<User> list=new ArrayList<>();
 		String query = "SELECT * FROM User";
 		ResultSet res;
-		//openConnection();
+
 		try {
 			Statement stat = connection.createStatement();
 			res = stat.executeQuery(query);	
 			
 			while (res.next()) {
 				list.add(new User (res.getInt(1), res.getString(2), res.getString(3)));	
-			}
-				
+			}				
 		} 
 		
 		catch (SQLException e) {
