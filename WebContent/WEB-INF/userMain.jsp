@@ -19,7 +19,7 @@
 	fis.close();
 	%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Google Chew::Login</title>
+<title>Insert title here</title>
 </head>
 <body>
 		
@@ -36,28 +36,11 @@
 	</div>
 	<div class="container">
 		<div class="header">
-			<h1>Login </h1>
+			<h1>Welcome </h1>
 		</div>
 		
 		
 		<div class="body">
-			<table>
-				<form action="logged" method="post">
-					<tr>
-						<td valign="top"><input  type="text" name="email" maxlength="50" size="30" 
-						placeholder="email"></td>
-					</tr>
-					<tr>
- 						<td valign="top"><input  type="password" name="password" maxlength="50" size="30"
- 						placeholder="password"></td>
-					</tr>
-					
-					<tr><td>
-						 <input type="submit" value="Login">   
-					</td></tr>
-				</form>
-				
-			</table>
 	
 		</div><!-- end .body -->
 		

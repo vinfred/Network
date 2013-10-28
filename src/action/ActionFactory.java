@@ -14,6 +14,7 @@ public class ActionFactory {
 		hash.put ("/editUser", new EditUserAction());
 		hash.put ("/saveUser", new SaveUserAction());
 		hash.put ("/login", new LoginAction());
+		hash.put ("/logged", new LoggedAction());
 	}
 	
 	public static Action getAction (HttpServletRequest request) {

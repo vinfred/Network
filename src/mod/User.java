@@ -1,7 +1,7 @@
 package mod;
 
-import java.math.*;
-import java.security.*;
+import help.Md5;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,14 +25,14 @@ public class User {
 	public User(String email, String password) {
 		super();
 		this.email = email;
-		this.password = md5(password);
+		this.password = Md5.getMd5(password);
 	}
 	
 	public User(int id, String email, String password) {
 		super();
 		this.id = id;
 		this.email = email;
-		this.password = md5(password);
+		this.password =  password;
 	}
 
 	public User(int id, String country,
@@ -130,25 +130,4 @@ public class User {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}	
-
-	public String md5 (String input) {
-         
-        String md5 = null;
-         
-        if(null == input) return null;
-         
-        try {
-        MessageDigest digest = MessageDigest.getInstance("MD5");
-        
-        
-        digest.update(input.getBytes(), 0, input.length());
-        md5 = new BigInteger(1, digest.digest()).toString(16);
- 
-        } 
-        catch (NoSuchAlgorithmException e) { 
-            e.printStackTrace();
-        }
-        
-        return md5;
-    }
 }

@@ -2,6 +2,7 @@ package db;
 
 import java.sql.*;
 import java.util.*;
+
 import mod.*;
 
 public class BaseDao implements UserDao, GroupDao, MessDao {
@@ -192,5 +193,25 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		}		
 		
 		return list;
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		User u = null;
+		String query = "SELECT id, email, password FROM User WHERE email=?";
+		ResultSet res;
+
+		try (PreparedStatement stat = connection.prepareStatement(query);){
+			stat.setString(1, email);
+			res = stat.executeQuery();	
+			if (res.next()) {
+				u = new User (res.getInt(1), res.getString(2), res.getString(3));	
+			}				
+		} 
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
 	}
 }
