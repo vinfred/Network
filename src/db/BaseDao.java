@@ -134,10 +134,13 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	
 	@Override
 	public User updateUser(User user) {
-		String query = "UPDATE User SET email=user.getEmail), password=user.getPassword(), "
-				+ "country=user.getCountry(), city=user.getCity(), "
-				+ "date=user.getBornDate(), profession=user.getProfession(), "
-				+ "name=user.getName(), surname=user.getSurname() WHERE id=?;";
+		User u1=findUserById(user.getId());
+		String query = "UPDATE User SET email=\""+u1.getEmail()+"\", password=\""+u1.getPassword()+"\", "
+				+ "country=\""+user.getCountry()+"\", city=\""+user.getCity()+"\", "
+				+ "born=\""+user.getBornDate()+"\", profession=\""+user.getProfession()+"\", "
+				+ "name=\""+user.getName()+"\", surname=\""+user.getSurname() +"\" WHERE id=?;";
+		
+		System.out.println(query);
 	
 		try (PreparedStatement stat = connection.prepareStatement(query);){
 			stat.setInt(1, user.getId());			

@@ -2,6 +2,7 @@ package mod;
 
 import java.math.*;
 import java.security.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class User {
@@ -10,7 +11,7 @@ public class User {
 	private String password;
 	private String country;
 	private String city;	
-	private Date   bornDate;
+	private Calendar   bornDate;
 	private String interests;
 	private String profession;
 	private String name;
@@ -34,13 +35,11 @@ public class User {
 		this.password = md5(password);
 	}
 
-	public User(int id, String email, String password, String country,
-			String city, Date bornDate, String interests, String profession,
+	public User(int id, String country,
+			String city, Calendar bornDate, String interests, String profession,
 			String name, String surname) {
 		super();
 		this.id = id;
-		this.email = email;
-		this.password = md5(password);
 		this.country = country;
 		this.city = city;
 		this.bornDate = bornDate;
@@ -50,10 +49,13 @@ public class User {
 		this.surname = surname;
 	}
 
-	public Date getBornDate() {
-		return bornDate;
+	public String getBornDate() {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
+		String formatted = format1.format(bornDate.getTime());
+		return formatted;
 	}
-	public void setBornDate(Date bornDate) {
+	
+	public void setBornDate(Calendar bornDate) {
 		this.bornDate = bornDate;
 	}
 
