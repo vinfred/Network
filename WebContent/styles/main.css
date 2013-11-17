@@ -19,12 +19,15 @@ a img {
 
 a:link {
 	text-decoration: none;
+	color: orange;
 }
 a:visited {
 	text-decoration: none;
+	color: orange;
 }
 a:hover, a:active, a:focus {
-	text-decoration: none;
+	text-decoration: underline;
+	color: orange;
 }
 
 .container {

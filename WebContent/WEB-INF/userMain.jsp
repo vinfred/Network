@@ -28,8 +28,12 @@
 			<tr>
 				<td id="text">Goggle Chew</td>
 				<td><table id="login"><tr>
-					<td>Panasik</td>
-					<td>Chewchewuskas</td>
+					<td>
+						<%out.print("<a href=\".\\user\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>
+					</td>
+					<tr><td>
+						<a href=".\logOut">Log Out</a>
+					</td>	</tr>				
 				</tr></table></td>					
 			</tr>
 		</table>
@@ -42,11 +46,7 @@
 		
 		<div class="body">
 			<p> 
-			<% 
-				//HttpSession session = request.getSession();
-				out.print( ((User)request.getAttribute("user")).getEmail()+" logged");
-				//out.print (((User)session.getAttribute("loggedUser")).getEmail());
-			%> 
+			groups
 			</p>
 	
 		</div><!-- end .body -->

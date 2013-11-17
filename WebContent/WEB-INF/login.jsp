@@ -28,8 +28,7 @@
 			<tr>
 				<td id="text">Goggle Chew</td>
 				<td><table id="login"><tr>
-					<td>Panasik</td>
-					<td>Chewchewuskas</td>
+				
 				</tr></table></td>					
 			</tr>
 		</table>
@@ -41,23 +40,22 @@
 		
 		
 		<div class="body">
-			<table>
-				<form action="user" method="post">
-					<tr>
-						<td valign="top"><input  type="text" name="email" maxlength="50" size="30" 
-						placeholder="email"></td>
-					</tr>
-					<tr>
- 						<td valign="top"><input  type="password" name="password" maxlength="50" size="30"
- 						placeholder="password"></td>
-					</tr>
-					
-					<tr><td>
-						 <input type="submit" value="Login">   
-					</td></tr>
-				</form>
-				
-			</table>
+			<form action="logged" method="post">
+				<table>					
+						<tr>
+							<td valign="top"><input  type="text" name="email" maxlength="50" size="30" 
+							placeholder="email"></td>
+						</tr>
+						<tr>
+	 						<td valign="top"><input  type="password" name="password" maxlength="50" size="30"
+	 						placeholder="password"></td>
+						</tr>
+						
+						<tr><td>
+							 <input type="submit" value="Login">   
+						</td></tr>					
+				</table>
+			</form>
 	
 		</div><!-- end .body -->
 		
