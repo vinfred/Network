@@ -41,6 +41,13 @@
 		
 		
 		<div class="body">
+			<p> 
+			<% 
+				//HttpSession session = request.getSession();
+				out.print( ((User)request.getAttribute("user")).getEmail()+" logged");
+				//out.print (((User)session.getAttribute("loggedUser")).getEmail());
+			%> 
+			</p>
 	
 		</div><!-- end .body -->
 		

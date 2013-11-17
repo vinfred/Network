@@ -42,7 +42,7 @@
 		
 		<div class="body">
 			<table>
-				<form action="logged" method="post">
+				<form action="user" method="post">
 					<tr>
 						<td valign="top"><input  type="text" name="email" maxlength="50" size="30" 
 						placeholder="email"></td>
