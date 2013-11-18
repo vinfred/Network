@@ -3,6 +3,7 @@ package action;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import mod.User;
 import db.BaseDao;
@@ -11,8 +12,10 @@ public class SaveUserAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
-		Integer id = (Integer)request.getSession().getAttribute("id");
-		
+		HttpSession session = request.getSession();
+		Integer id = (Integer)session.getAttribute("id");
+		User lUser = (User)session.getAttribute("loggedUser");
+
 		String name  = request.getParameter("name");
 		String surname  = request.getParameter("surname");
 		String country  = request.getParameter("country");
@@ -20,15 +23,16 @@ public class SaveUserAction implements Action {
 		String profession  = request.getParameter("profession");
 		String interests  = request.getParameter("interests");
 		//request.getParameter("birthday");	
-		
+
 		Calendar c = Calendar.getInstance();
-		c.set(1800, 2, 12);
-		System.out.println(c.getTime());
-			
-		User u = new User (id, country, city, c, interests, profession, name, surname);
+		c.set(1800, Calendar.JULY, 12);
+
+		User u = new User (id, lUser.getEmail(), lUser.getPassword(), 
+				country, city, c, interests, profession, name, surname);
 		db.updateUser(u);
-		
-		UserAction act = new UserAction();
+
+		session.setAttribute("loggedUser", u);
+		UserMainAction act = new UserMainAction();
 		return act.execute(request, db);
 	}
 

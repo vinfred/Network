@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import mod.Group;
 import mod.GroupDao;
@@ -251,14 +252,18 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	@Override
 	public User findUserByEmail(String email) {
 		User u = null;
-		String query = "SELECT id, email, password FROM User WHERE email=?";
+		String query = "SELECT * FROM User WHERE email=?";
 		ResultSet res;
+		Calendar c = Calendar.getInstance();
+		c.set(1800, Calendar.JULY, 12);
 
 		try (PreparedStatement stat = this.connection.prepareStatement(query);){
 			stat.setString(1, email);
 			res = stat.executeQuery();	
 			if (res.next()) {
-				u = new User (res.getInt(1), res.getString(2), res.getString(3));	
+				u = new User (res.getInt("id"), res.getString("email"), res.getString("password"), res.getString("country"), 
+						res.getString("city"), c, res.getString("interest"), res.getString("profession"), 
+						res.getString("name"), res.getString("surname"));		
 			}				
 		} 
 
@@ -273,15 +278,18 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		User u = null;
 		String query = "SELECT * FROM User WHERE id=?";
 		ResultSet res;
+		Calendar c = Calendar.getInstance();
+		c.set(1800, Calendar.JULY, 12);
 
 		try (PreparedStatement stat = this.connection.prepareStatement(query);){
 			stat.setInt(1, id);
 			res = stat.executeQuery();	
 			if (res.next()) {
-				u = new User (id, res.getString(2), res.getString(3));	
+				u = new User (id, res.getString("email"), res.getString("password"), res.getString("country"), 
+						res.getString("city"), c, res.getString("interest"), res.getString("profession"), 
+						res.getString("name"), res.getString("surname"));	
 			}				
 		} 
-
 		catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -20,6 +20,7 @@ public class AddUserAction implements Action {
 		if (!email.equals("") && !password.equals("")) {
 			User u = new User (email, password);
 			db.createUser(u);
+			u = db.findUserByEmail(u.getEmail());
 			session.setAttribute("loggedUser", u);
 
 			UserMainAction act = new UserMainAction();

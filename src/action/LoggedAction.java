@@ -21,7 +21,7 @@ public class LoggedAction implements Action {
 		} 
 		else {
 
-			System.out.println ("first if");
+			//System.out.println ("first if");
 			String email  = request.getParameter("email");
 			String password  = request.getParameter("password");
 			u = db.findUserByEmail(email);
@@ -30,12 +30,15 @@ public class LoggedAction implements Action {
 			System.out.println(password);
 
 			if (u!=null) {
-				System.out.println ("second if");
+				//System.out.println ("second if");
 				//System.out.println(Md5.getMd5(password));
 				//System.out.println(u.getPassword());
 				if (Md5.getMd5(password).equals(u.getPassword())) {
-					System.out.println ("third if");
+					//System.out.println ("third if");
+					//temporary decision - 18/11/2013
+					//u=db.findUserById(u.getId());
 					session.setAttribute("loggedUser", u);
+					System.out.println(u.getName());
 					System.out.println(session.getAttribute("loggedUser"));
 					request.setAttribute("user", u);
 

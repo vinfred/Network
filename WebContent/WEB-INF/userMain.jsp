@@ -35,6 +35,47 @@
 			</div>
 			
 			<div class="main">
+				<%User u = (User)session.getAttribute("loggedUser");%>
+				<form action="editUser" method="post">
+				<input type="hidden" name = "id" value="<%out.print(u.getId()); %>">
+				<table>
+					<tr>
+						<td valign="top"><label for="name">Name</label></td>
+						<td valign="top"><span><%out.print(u.getName()==null?"":u.getName()); %></span></td>
+					</tr>
+					<tr>
+						<td valign="top"><label for="surname">Surname</label></td>
+ 						<td valign="top"><%out.print(u.getSurname()==null?"":u.getSurname()); %></td>
+					</tr>
+					<tr>
+						<td valign="top"><label for="birthday">Birthday</label></td>
+						<td valign="top"><% %></td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td valign="top"><label for="country">Country</label></td>
+						<td valign="top"><%out.print(u.getCountry()==null?"":u.getCountry()); %></td>
+					</tr>
+					<tr>
+						<td valign="top"><label for="city">City</label></td>
+ 						<td valign="top"><%out.print(u.getCity()==null?"":u.getCity()); %></td>
+					</tr>
+					<tr>
+						<td valign="top"><label for="profession">Profession</label></td>
+						<td valign="top"><%out.print(u.getProfession()==null?"":u.getProfession()); %></td>
+					</tr>
+					
+					<tr>
+						<td valign="top"><label for="interests">Interests</label></td>
+						<td valign="top"><%out.print(u.getInterests()==null?"":u.getInterests()); %></td>
+						
+					</tr>
+					<tr><td>
+						 <input type="submit" value="Edit info">   
+					</td></tr>				
+			</table>
+			</form>
+				
 			</div>
 	
 		</div><!-- end .body -->

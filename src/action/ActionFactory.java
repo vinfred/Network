@@ -18,6 +18,8 @@ public class ActionFactory {
 		hash.put ("/user", new UserMainAction());
 		hash.put ("/logOut", new LogOutAction());
 		hash.put ("/myGroups", new UserGroupsAction());
+		hash.put ("/profile", new UserMainAction());
+		hash.put ("/addGroup", new AddGroupAction());
 
 	}
 

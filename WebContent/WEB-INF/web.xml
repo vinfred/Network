@@ -63,6 +63,11 @@
     <servlet-name>SimpleServlet</servlet-name>
     <url-pattern>/myGroups</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>SimpleServlet</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
 
   
   <listener>
