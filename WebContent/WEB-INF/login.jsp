@@ -4,21 +4,18 @@
 <html>
 <head>
 
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="stylesheet" type="text/css" href="styles/main.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Google Chew::Login</title>
 </head>
 <body>
 		
 	<div class="top">			
-		<table class="top-nav">
-			<tr>
-				<td id="text">Goggle Chew</td>
-				<td><table id="login"><tr>
-				
-				</tr></table></td>					
-			</tr>
-		</table>
+		<center><div class="top-nav">
+			<div class="logo">Goggle Chew</div>
+						
+		</div></center>
 	</div>
 	
 	<div class="container">
@@ -28,8 +25,8 @@
 		
 		
 		<div class="body">
-			<form action="logged" method="post">
-				<table>					
+			<center><form action="logged" method="post">
+				<table id="login_table">					
 						<tr>
 							<td valign="top"><input  type="text" name="email" maxlength="50" size="30" 
 							placeholder="email"></td>
@@ -40,10 +37,17 @@
 						</tr>
 						
 						<tr><td>
-							 <input type="submit" value="Login">   
+							<center> <input type="submit" value="Sign In">  </center> 
 						</td></tr>					
 				</table>
-			</form>
+			</form></center>
+			<center>
+				<p>Don't have an account?</p>
+				<!--  <form method = POST action = "./signUp">
+					<input type="submit"  value="Sign Up"/>
+				</form>-->
+				<button><a href="./signUp.html">Sign Up</a></button>
+			</center>
 	
 		</div><!-- end .body -->
 		

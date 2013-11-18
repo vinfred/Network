@@ -32,10 +32,23 @@
 					<li><a href=".\myGroups">My groups </a></li>
 					<li><a href=".\settings">Settings </a></li>
 				</ul>
-			</div>
+			</div><!-- end .sidebar -->
 			
 			<div class="main">
-			</div>
+				<form action="addGroup" method="post">
+					<table>						
+							<tr><td valign="top">
+		 						 <input  type="text" name="title" maxlength="50" size="30" placeholder="group title">
+							</td></tr>
+							<tr><td valign="top">
+		 						 <textarea name="description" rows="5" cols="50" placeholder="description"></textarea>
+							</td></tr>
+							<tr><td>
+								 <input type="submit" value="Create group">   
+							</td></tr>									
+					</table>
+				</form>	
+			</div><!-- end .main -->
 	
 		</div><!-- end .body -->
 		

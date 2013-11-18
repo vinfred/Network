@@ -10,7 +10,6 @@ public class LogOutAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {	
 		HttpSession session = request.getSession();
-		UserMainAction act = new UserMainAction();
 		System.out.println("log out action");
 		session.removeAttribute("loggedUser");
 

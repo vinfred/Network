@@ -1,6 +1,7 @@
 body {
 	font: 100%/1.4 Geneva, Georgia, Trebuchet sans-serif;
 	background-color: #CCCC99;
+	background-image:url("img/back.png");
 	margin: 0;
 }
 
@@ -17,24 +18,12 @@ a img {
 	border: none;
 }
 
-a:link {
-	text-decoration: none;
-	color: orange;
-}
-a:visited {
-	text-decoration: none;
-	color: orange;
-}
-a:hover, a:active, a:focus {
-	text-decoration: underline;
-	color: orange;
-}
-
 .container {
 	position:static;
 	width: 1000px;
 	height:100%;
 	margin: 0 auto;
+
 	z-index:1;
 }
 
@@ -50,47 +39,98 @@ a:hover, a:active, a:focus {
 	top:190px;
 	width:auto;
 	top: 250px;
-	height:1000px;
+	height:auto;
+	min-height: 500px;
 	bottom:15px;
 	z-index:2;
 	background-color: #FFFF99;
 	font: Georgia;
+	padding-top: 50px;
 
 }
 
-.header {
-	
+.header {	
 	padding: 0px;
-	height:70px;
+	height:102px;
 	width:100%;
 	background: #FFCC33;
 	z-index:3;	
 }
 
 .header h1 {
-	padding: 20px ;
+	padding: 50px ;
 }
 
-#text {
-	padding: 0px 0px;
+.logo {
+	padding-top:5px;
 	color: orange;
 	z-index:3;
 	font-size: 18px;
+	float:left;
+	width:50%;
 }
 
-#login {
+.login {
 	font-size: 14px;
-	padding-left: 150%;
-	color: #ffffff;
+	float:right;
+	width:50%;
+	color: orange;	
+}
+
+.login  a:link, a:visited{
+	text-decoration: none;
+	color: white ;
+}
+
+.login  a:hover, a:active, a:focus {
+	text-decoration: underline;
+	color: orange ;
+}
+
+#login_table {
+	padding: auto;
 }
 
 .top {
-	;
 	background-color: rgba(66,65,60,0.7);
 	z-index: 10;
 	width: 100%;
+	position:fixed;
 }
 
 .top-nav {
-	margin: 0 200px;
+	width:100%;
+	padding-right: auto;
+	padding-left: auto;
 }
+
+.sidebar {
+	height:auto;
+	min-height: 500px;
+	width: 200px;
+	background-color: white;
+	float:left;
+}
+
+.main {
+	height:auto;
+	min-height: 500px;
+	padding: 50px;
+	float:left;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding:50px;
+}
+
+.sidebar a:link, a:visited {
+	text-decoration: none;
+	color: rgb(48,131,133) ;
+}
+
+.sidebar a:hover, a:active, a:focus {
+	text-decoration: underline;
+	color: rgb(48,131,133) ;
+}
+

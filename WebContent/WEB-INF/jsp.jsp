@@ -4,28 +4,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<%
-	//String url = request.getContextPath() + "/WebContent/styles/main.css";
-	//out.println("<link href=\"main.css\" rel=\"stylesheet\" type=\"text/css\">");
-	%>
-	<%
-	out.println("<style type=\"text/css\">");
-	FileInputStream fis = new FileInputStream(new File("/home/mirka/workspace/Network/WebContent/styles/main.css"));
-	byte[] buff = new byte[26400];
-	String res = "";
-	try {
-		fis.read(buff);
-		res = new String(buff);
-	}
-	catch (Exception ex ) {ex.printStackTrace();};
-	
-	out.println(res);
-	out.println("</style>");
-	fis.close();
-	%>
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
 	<!-- <LINK href="/home/mirka/workspace/Network/WebContent/WEB-INF/styles/main.css" rel="stylesheet" type="text/css"> -->
 	<!-- link rel="icon" href="favicon.ico" type="image/x-icon" /-->
-	<!-- link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /-->
+	
 	<title>Google Chew::Users</title>
 </head>
 <body>

@@ -1,6 +1,7 @@
 package action;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import mod.User;
 import db.BaseDao;
@@ -9,16 +10,27 @@ public class AddUserAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
-		String email  = (String)request.getParameter("email");
-		String password  = (String)request.getParameter("password");
-		
+		HttpSession session = request.getSession();
+
+		String email  = request.getParameter("email");
+		String password  = request.getParameter("password");
+
 		System.out.println("email: "+email);
-		
-		User u = new User (email, password);
-		db.createUser(u);
-		
-		UserAction act = new UserAction();
-		return act.execute(request, db);
+
+		if (!email.equals("") && !password.equals("")) {
+			User u = new User (email, password);
+			db.createUser(u);
+			session.setAttribute("loggedUser", u);
+
+			UserMainAction act = new UserMainAction();
+			return act.execute(request, db);
+		}
+		else {
+			LoginAction act = new LoginAction();
+			return act.execute(request, db);
+		}
+
+
 	}
 
 }

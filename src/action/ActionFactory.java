@@ -17,6 +17,8 @@ public class ActionFactory {
 		hash.put ("/logged", new LoggedAction());
 		hash.put ("/user", new UserMainAction());
 		hash.put ("/logOut", new LogOutAction());
+		hash.put ("/myGroups", new UserGroupsAction());
+
 	}
 
 	public static Action getAction (HttpServletRequest request) {
