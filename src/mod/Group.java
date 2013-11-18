@@ -3,6 +3,7 @@ package mod;
 import java.util.ArrayList;
 
 public class Group {
+	User admin;
 	int id;
 	ArrayList<Message> messList;
 	String name, description;
@@ -20,17 +21,23 @@ public class Group {
 		this.messList = messList;
 	}
 
-	public Group(int id, String name, String description) {
+	public Group(int id, User admin, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.admin=admin;
 	}
 
-	public Group(String name, String description) {
+	public Group(User admin, String name, String description) {
 		super();
 		this.name = name;
 		this.description = description;
+		this.admin=admin;
+	}
+
+	public User getAdmin() {
+		return this.admin;
 	}
 
 	public String getDescription() {
@@ -51,6 +58,10 @@ public class Group {
 
 	public ArrayList<User> getUserList() {
 		return this.userList;
+	}
+
+	public void setAdmin(User admin) {
+		this.admin = admin;
 	}
 
 	public void setDescription(String description) {

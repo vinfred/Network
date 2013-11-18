@@ -13,16 +13,10 @@
 </head>
 <body>
 		
-	<div class="top">			
-		<table class="top-nav">
-			<tr>
-				<td id="text">Goggle Chew</td>
-				<td><table id="login"><tr>
-					<td>Panasik</td>
-					<td>Chewchewuskas</td>
-				</tr></table></td>					
-			</tr>
-		</table>
+		<div class="top">			
+		<center><div class="top-nav">
+			<div class="logo">Goggle Chew</div>		
+		</div></center>
 	</div>
 	<div class="container">
 		<div class="header">

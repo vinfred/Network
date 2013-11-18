@@ -18,6 +18,16 @@ a img {
 	border: none;
 }
 
+a:link, a:visited{
+	text-decoration: none;
+	color: orange ;
+}
+
+a:hover, a:active, a:focus {
+	text-decoration: underline;
+	color: orange ;
+}
+
 .container {
 	position:static;
 	width: 1000px;

@@ -12,7 +12,7 @@
 		
 	<div class="top">			
 		<center><div class="top-nav">
-			<div class="logo">Goggle Chew</div>
+			<div class="logo">Google Chew</div>
 			<div class="login"><table >
 					<tr><td>
 						<%out.print("<a href=\".\\user\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>
@@ -48,6 +48,25 @@
 							</td></tr>									
 					</table>
 				</form>	
+				
+				<table>
+				<% 
+					ArrayList<Group> groups = (ArrayList<Group>)request.getAttribute("groups");
+					
+					for (Group g: groups) {
+
+						out.print("<tr><td>"+g.getName()+": </td><td>"+g.getDescription()+ "</td> "
+								+"<td> <form action=\"deleteGroup\" method=\"post\"><input type=\"hidden\" name = \"id\" value=\""+
+								g.getId()+"\"><input type=\"submit\" value=\"Delete\" id="+g.getId()
+								+ "></form></td><td><form action=\"editGroup\" method=\"post\"><input type=\"hidden\" name = \"id\" value=\""+
+								g.getId()+"\"><input type=\"submit\" value=\"Edit\" id="+g.getId()
+								+ "></form></td></tr>\n");
+					}
+					if (groups.size()==0) {
+						out.print("<h2>No groups yet :'( </h2>\n");
+					}
+				%>
+			</table>
 			</div><!-- end .main -->
 	
 		</div><!-- end .body -->

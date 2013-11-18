@@ -12,7 +12,7 @@
 		
 	<div class="top">			
 		<center><div class="top-nav">
-			<div class="logo">Goggle Chew</div>
+			<div class="logo">Google Chew</div>
 			<div class="login"><table >
 					<tr><td>
 						<%out.print("<a href=\".\\user\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>

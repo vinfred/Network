@@ -34,7 +34,7 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 			res = stat.executeQuery(query);	
 
 			while (res.next()) {
-				list.add(new Group (res.getInt(1), res.getString(2), res.getString(3)));	
+				list.add(new Group (res.getInt(1), findUserById(res.getInt(2)), res.getString(3), res.getString(4)));	
 			}				
 		} 
 		catch (SQLException e) {
@@ -46,23 +46,29 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 
 	@Override
 	public ArrayList<Group> allUserGroups(int userId) {
-		ArrayList<Group> list=new ArrayList<>();
-		String query = "SELECT * FROM Community WHERE ";
-		ResultSet res;
+		ArrayList<Group> groups = new ArrayList<>();
+		String query = "SELECT id FROM Community AS c JOIN UserInCommunity AS uic ON c.id=uic.groupId WHERE uic.userId=?;";
 
-		try {
-			Statement stat = this.connection.createStatement();
-			res = stat.executeQuery(query);	
+		try (PreparedStatement stat = this.connection.prepareStatement(query);){
+			stat.setInt(1, userId);	
+			ResultSet res = stat.executeQuery();
 
+			ArrayList<Integer> groupIds = new ArrayList<>();
 			while (res.next()) {
-				list.add(new Group (res.getInt(1), res.getString(2), res.getString(3)));	
-			}				
+				groupIds.add(res.getInt(1));
+				System.out.println(res.getInt(1));
+			}
+
+			for (Integer i:groupIds) {
+				groups.add(findGroupById(i));
+				System.out.println(groups.get(0));
+			}
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
 		}		
 
-		return list;
+		return groups;
 	}
 
 	@Override
@@ -91,11 +97,13 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 		int id=0;		
 		createGroupTable();
 
-		String query = "INSERT INTO Community (id, name, description) VALUES (?, ?, ?);";
+		String query = "INSERT INTO Community (id, admin, name, description) VALUES (?, ?, ?, ?);";
+		String query2 = "INSERT INTO UserInCommunity (userId, groupId) VALUES (?, ?);";
 		String idQuery = "SELECT max(id) FROM Community";
 
 		try (PreparedStatement stat = this.connection.prepareStatement(query);) {
 			Statement stat1 = this.connection.createStatement();
+			PreparedStatement stat2 = this.connection.prepareStatement(query2);
 			ResultSet res = stat1.executeQuery(idQuery);
 
 			if (res.next()) {
@@ -103,9 +111,14 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 			}
 
 			stat.setInt(1, id);
-			stat.setString(2, group.getName());
-			stat.setString(3, group.getDescription());
+			stat.setInt(2, group.getAdmin().getId());
+			stat.setString(3, group.getName());
+			stat.setString(4, group.getDescription());
 			stat.execute();
+
+			stat2.setInt(1, group.getAdmin().getId());
+			stat2.setInt(2, id);
+			stat2.execute();
 
 			group.setId(id);
 			System.out.println("User #"+group.getId()+" "+group.getName()+" "+group.getDescription()+" created\n");
@@ -120,16 +133,20 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 	}
 
 	void createGroupTable() {
-		String query = "CREATE TABLE IF NOT EXISTS Community (id INT NOT NULL PRIMARY KEY,"
-				+ "name VARCHAR(50) NOT NULL, description VARCHAR(500)";
+		String query = "CREATE TABLE IF NOT EXISTS Community (id INT NOT NULL PRIMARY KEY, admin INT NOT NULL, "
+				+ "name VARCHAR(50) NOT NULL, description VARCHAR(500));";
 
 		String query2 = "CREATE TABLE IF NOT EXISTS MessageInCommunity (messageId INT, groupId INT "+
 				"FOREIGN KEY(messageId) references Message(id), FOREIGN KEY(groupId) references Community(id));";
 
+		String query3 = "CREATE TABLE IF NOT EXISTS UserInCommunity (userId INTEGER, groupId INTEGER, "
+				+ "FOREIGN KEY (userId) references User(id), FOREIGN KEY (groupId) references Community(id));";
+
 		try {
 			Statement stat = this.connection.createStatement();
 			stat.executeUpdate(query);
-			stat.executeUpdate(query2);
+			//stat.executeUpdate(query2);
+			stat.executeUpdate(query3);
 		} 
 
 		catch (SQLException e) {
@@ -196,13 +213,10 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 				+ "country VARCHAR(50), city VARCHAR(50),"
 				+ "born DATE, interest VARCHAR(500), profession VARCHAR(100),"
 				+ "name VARCHAR(50), surname VARCHAR(50));";
-		String query2 = "CREATE TABLE IF NOT EXISTS UserInCommunity (userId INTEGER, groupId INTEGER, "
-				+ "FOREIGN KEY (userId) references User(id), FOREIGN KEY (groupId) references Community(id));";
-
 		try {
 			Statement stat = this.connection.createStatement();
 			stat.executeUpdate(query);
-			stat.executeUpdate(query2);
+			//stat.executeUpdate(query2);
 		} 
 
 		catch (SQLException e) {
@@ -239,8 +253,21 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 
 	@Override
 	public Group findGroupById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Group g = null;
+		String query = "SELECT * FROM Community WHERE id=?";
+		ResultSet res;
+
+		try (PreparedStatement stat = this.connection.prepareStatement(query);){
+			stat.setInt(1, id);
+			res = stat.executeQuery();	
+			if (res.next()) {
+				g = new Group (id, findUserById(res.getInt("admin")), res.getString("name"), res.getString("description"));	
+			}				
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return g;
 	}
 
 	@Override
