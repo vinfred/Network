@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="styles/main.css">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" >
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 </head>
@@ -40,33 +40,33 @@
 				<input type="hidden" name = "id" value="<%out.print(u.getId()); %>">
 				<table>
 					<tr>
-						<td valign="top"><label for="name">Name</label></td>
+						<td valign="top"><label for="name"><i>Name</i></label></td>
 						<td valign="top"><span><%out.print(u.getName()==null?"":u.getName()); %></span></td>
 					</tr>
 					<tr>
-						<td valign="top"><label for="surname">Surname</label></td>
+						<td valign="top"><label for="surname"><i>Surname</i></label></td>
  						<td valign="top"><%out.print(u.getSurname()==null?"":u.getSurname()); %></td>
 					</tr>
 					<tr>
-						<td valign="top"><label for="birthday">Birthday</label></td>
+						<td valign="top"><label for="birthday"><i>Birthday</i></label></td>
 						<td valign="top"><% %></td>
 					</tr>
 					<tr></tr>
 					<tr>
-						<td valign="top"><label for="country">Country</label></td>
+						<td valign="top"><label for="country"><i>Country</i></label></td>
 						<td valign="top"><%out.print(u.getCountry()==null?"":u.getCountry()); %></td>
 					</tr>
 					<tr>
-						<td valign="top"><label for="city">City</label></td>
+						<td valign="top"><label for="city"><i>City</i></label></td>
  						<td valign="top"><%out.print(u.getCity()==null?"":u.getCity()); %></td>
 					</tr>
 					<tr>
-						<td valign="top"><label for="profession">Profession</label></td>
+						<td valign="top"><label for="profession"><i>Profession</i></label></td>
 						<td valign="top"><%out.print(u.getProfession()==null?"":u.getProfession()); %></td>
 					</tr>
 					
 					<tr>
-						<td valign="top"><label for="interests">Interests</label></td>
+						<td valign="top"><label for="interests"><i>Interests</i></label></td>
 						<td valign="top"><%out.print(u.getInterests()==null?"":u.getInterests()); %></td>
 						
 					</tr>

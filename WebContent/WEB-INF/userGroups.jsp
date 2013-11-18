@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="styles/main.css">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" >
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 </head>
@@ -55,7 +55,7 @@
 					
 					for (Group g: groups) {
 
-						out.print("<tr><td>"+g.getName()+": </td><td>"+g.getDescription()+ "</td> "
+						out.print("<tr><td><a href=\".\\showGroup\\1\">"+g.getName()+"</a> </td><td>"+g.getDescription()+ "</td> "
 								+"<td> <form action=\"deleteGroup\" method=\"post\"><input type=\"hidden\" name = \"id\" value=\""+
 								g.getId()+"\"><input type=\"submit\" value=\"Delete\" id="+g.getId()
 								+ "></form></td><td><form action=\"editGroup\" method=\"post\"><input type=\"hidden\" name = \"id\" value=\""+
@@ -73,7 +73,7 @@
 		
 		
 		<div class="footer">
-			<p id="text">footer</p>
+			<p id="text"> .</p>
 		</div><!-- end .footer -->
 		
 	</div><!-- end .container -->

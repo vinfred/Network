@@ -51,7 +51,7 @@ public class SimpleServlet extends HttpServlet {
 		Action action = ActionFactory.getAction(request);
 		String res = action.execute(request, da);		
 
-		RequestDispatcher rd = request.getRequestDispatcher(res);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/"+res);
 		rd.forward(request, response);
 
 

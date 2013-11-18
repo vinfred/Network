@@ -1,14 +1,12 @@
 package action;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import mod.User;
 import db.BaseDao;
 
-public class UserAction implements Action {
+public class DeleteGroupAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
@@ -18,12 +16,15 @@ public class UserAction implements Action {
 		if (u==null) {
 			LoginAction act = new LoginAction();
 			return act.execute(request, db);
-		} 
-		else {
-			ArrayList<User> users = db.allUsers();
-
-			request.setAttribute("users", users);
-			return "jsp.jsp";
 		}
+		else {
+			String value = request.getParameter("id");
+			Integer id = Integer.valueOf(value);
+
+			db.deleteGroup(db.findGroupById(Integer.valueOf(id)));
+
+			UserGroupsAction act = new UserGroupsAction();
+			return act.execute(request, db);
+		}		
 	}
 }

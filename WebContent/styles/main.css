@@ -38,7 +38,7 @@ a:hover, a:active, a:focus {
 }
 
 .footer {
-	background-color: orange;
+	background-color: #FFFF99;
 	margin: 0px;
 	height: 150px;
 	width:auto;
@@ -89,7 +89,7 @@ a:hover, a:active, a:focus {
 
 .login  a:link, a:visited{
 	text-decoration: none;
-	color: white ;
+	color: orange ;
 }
 
 .login  a:hover, a:active, a:focus {
@@ -118,7 +118,7 @@ a:hover, a:active, a:focus {
 	height:auto;
 	min-height: 500px;
 	width: 200px;
-	background-color: white;
+	background-color:#dee6e7;
 	float:left;
 }
 

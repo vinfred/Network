@@ -226,8 +226,22 @@ public class BaseDao implements UserDao, GroupDao, MessDao {
 
 	@Override
 	public void deleteGroup(Group group) {
-		// TODO Auto-generated method stub
+		String query = "DELETE FROM UserInCommunity WHERE groupId=?";
+		String query2 = "DELETE FROM Community WHERE id=?";
 
+		try (PreparedStatement stat = this.connection.prepareStatement(query); 
+				PreparedStatement stat2 = this.connection.prepareStatement(query2);){
+			stat.setInt(1, group.getId());			
+			stat.execute();
+
+			stat2.setInt(1, group.getId());			
+			stat2.execute();
+			System.out.println("Deleting group "+group.getName()+"\n");
+		} 
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

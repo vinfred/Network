@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="styles/main.css">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
+<link rel="stylesheet" type="text/css" href="/Network/styles/main.css">
+<link rel="shortcut icon" href="/Network/favicon.ico" type="image/x-icon" >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Google Chew::Edit Profile</title>
 </head>

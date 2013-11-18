@@ -4,8 +4,8 @@
 <html>
 <head>
 
-<link rel="stylesheet" type="text/css" href="styles/main.css">
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" >
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Google Chew::Login</title>
 </head>
@@ -13,7 +13,7 @@
 		
 	<div class="top">			
 		<center><div class="top-nav">
-			<div class="logo">Goggle Chew</div>
+			<div class="logo">Google Chew</div>
 						
 		</div></center>
 	</div>
@@ -46,7 +46,7 @@
 				<!--  <form method = POST action = "./signUp">
 					<input type="submit"  value="Sign Up"/>
 				</form>-->
-				<button><a href="./signUp.html">Sign Up</a></button>
+				<button><a href="/Network/signUp.html">Sign Up</a></button>
 			</center>
 	
 		</div><!-- end .body -->

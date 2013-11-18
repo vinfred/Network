@@ -20,12 +20,19 @@ public class ActionFactory {
 		hash.put ("/myGroups", new UserGroupsAction());
 		hash.put ("/profile", new UserMainAction());
 		hash.put ("/addGroup", new AddGroupAction());
+		hash.put ("/deleteGroup", new DeleteGroupAction());
+		hash.put ("/editGroup", new EditGroupAction());
 
 	}
 
 	public static Action getAction (HttpServletRequest request) {
-		String url = request.getServletPath();
+		String url = request.getPathInfo();
 		System.out.println(url);
+		System.out.println(request.getRequestURL());
+		System.out.println(request.getRequestURI());
+		System.out.println(request.getPathInfo());
+		//System.out.println(request.get);
+
 		return hash.get(url);
 	}
 

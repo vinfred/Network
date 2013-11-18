@@ -29,7 +29,7 @@ public class UserGroupsAction implements Action {
 
 			request.setAttribute("groups", groups);
 
-			return "WEB-INF/userGroups.jsp";
+			return "userGroups.jsp";
 		}
 	}
 

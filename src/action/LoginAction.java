@@ -16,7 +16,7 @@ public class LoginAction implements Action {
 			return act.execute(request, db);
 		} 
 		else {
-			return "WEB-INF/login.jsp";
+			return "login.jsp";
 		}
 
 	}

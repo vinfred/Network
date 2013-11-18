@@ -49,7 +49,7 @@ public class LoggedAction implements Action {
 			} 
 
 			else {
-				return "WEB-INF/login.jsp";
+				return "login.jsp";
 			}
 		}
 	}

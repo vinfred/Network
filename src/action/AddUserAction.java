@@ -17,7 +17,7 @@ public class AddUserAction implements Action {
 
 		System.out.println("email: "+email);
 
-		if (!email.equals("") && !password.equals("")) {
+		if ((email!=null) && (password!=null) && !email.equals("") && !password.equals("")) {
 			User u = new User (email, password);
 			db.createUser(u);
 			u = db.findUserByEmail(u.getEmail());
@@ -30,8 +30,5 @@ public class AddUserAction implements Action {
 			LoginAction act = new LoginAction();
 			return act.execute(request, db);
 		}
-
-
 	}
-
 }
