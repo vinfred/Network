@@ -4,8 +4,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="/Network/styles/main.css">
-	<link rel="shortcut icon" href="/Network/favicon.ico" type="image/x-icon" >
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" >
 	<!-- <LINK href="/home/mirka/workspace/Network/WebContent/WEB-INF/styles/main.css" rel="stylesheet" type="text/css"> -->
 	<!-- link rel="icon" href="favicon.ico" type="image/x-icon" /-->
 	
@@ -15,7 +15,7 @@
 		
 		<div class="top">			
 		<center><div class="top-nav">
-			<div class="logo">Goggle Chew</div>		
+			<div class="logo">Google Chew</div>		
 		</div></center>
 	</div>
 	<div class="container">
@@ -43,8 +43,8 @@
 					}
 				%>
 			</table>
-			<table>
-				<form action="addUser" method="post"><tr>
+			<form action="addUser" method="post">
+			<table><tr>				
 					<td valign="top">
  						 <input  type="text" name="email" maxlength="50" size="30" placeholder="email">
 					</td>
@@ -54,9 +54,9 @@
 					<td>
 						 <input type="submit" value="Add">   
 					</td>
-				</tr></form>
-				
+				</tr>				
 			</table>
+			</form>
 		</div><!-- end .body -->
 		
 		

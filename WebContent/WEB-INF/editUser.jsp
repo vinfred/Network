@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/Network/styles/main.css">
-<link rel="shortcut icon" href="/Network/favicon.ico" type="image/x-icon" >
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Google Chew::Edit Profile</title>
 </head>
@@ -12,10 +12,10 @@
 		
 	<div class="top">			
 		<center><div class="top-nav">
-			<div class="logo">Goggle Chew</div>
+			<div class="logo">Google Chew</div>
 			<div class="login"><table >
 					<tr><td>
-						<%out.print("<a href=\".\\user\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>
+						<%out.print("<a href=\".\\profile\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>
 					</td></tr>
 					<tr><td>
 						<a href=".\logOut">Log Out</a>
@@ -72,9 +72,9 @@
 		</div><!-- end .body -->
 		
 		
-		<div class="footer">
+		<footer>
 			<p id="text">footer</p>
-		</div><!-- end .footer -->
+		</footer><!-- end .footer -->
 		
 	</div><!-- end .container -->	
 </body>

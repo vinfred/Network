@@ -9,17 +9,17 @@ import mod.Group;
 import mod.User;
 import db.BaseDao;
 
-public class AddGroupAction implements Action {
+public class SaveGroupAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
 		HttpSession session = request.getSession();
-		User u = (User)session.getAttribute("loggedUser");
+		User user = (User)session.getAttribute("loggedUser");
 
-		if (u==null) {
+		if (user==null) {
 			LoginAction act = new LoginAction();
 			return act.execute(request, db);
-		} 
+		}
 		else {
 			try {
 				request.setCharacterEncoding("UTF-8");
@@ -27,15 +27,19 @@ public class AddGroupAction implements Action {
 			catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			String title  = request.getParameter("title");
+			Integer id = (Integer)session.getAttribute("group");
+			User lUser = (User)session.getAttribute("loggedUser");
+
+			String name  = request.getParameter("title");
 			String description  = request.getParameter("description");
-			System.out.println(title);
-			Group g = new Group(u, title, description);
-			db.createGroup(g);
 
 
+			Group g = new Group(id, lUser, name, description);
+			db.updateGroup(g);
+
+			//session.setAttribute("loggedUser", u);
 			UserGroupsAction act = new UserGroupsAction();
 			return act.execute(request, db);
-		}		
-	}
-}
+		}
+
+	}}

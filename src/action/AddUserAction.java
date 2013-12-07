@@ -1,5 +1,7 @@
 package action;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,12 @@ public class AddUserAction implements Action {
 	public String execute(HttpServletRequest request, BaseDao db) {
 		HttpSession session = request.getSession();
 
+		try {
+			request.setCharacterEncoding("UTF-8");
+		}
+		catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		String email  = request.getParameter("email");
 		String password  = request.getParameter("password");
 

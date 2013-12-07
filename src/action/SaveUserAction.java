@@ -1,5 +1,6 @@
 package action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,12 @@ public class SaveUserAction implements Action {
 			return act.execute(request, db);
 		}
 		else {
+			try {
+				request.setCharacterEncoding("UTF-8");
+			}
+			catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			Integer id = (Integer)session.getAttribute("id");
 			User lUser = (User)session.getAttribute("loggedUser");
 

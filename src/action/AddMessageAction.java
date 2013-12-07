@@ -1,15 +1,17 @@
 package action;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import mod.Group;
+import mod.Message;
 import mod.User;
 import db.BaseDao;
 
-public class AddGroupAction implements Action {
+public class AddMessageAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
@@ -27,15 +29,24 @@ public class AddGroupAction implements Action {
 			catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			String title  = request.getParameter("title");
-			String description  = request.getParameter("description");
-			System.out.println(title);
-			Group g = new Group(u, title, description);
-			db.createGroup(g);
+			Calendar c = Calendar.getInstance();
 
+			//c.set(1800, Calendar.JULY, 12);
 
-			UserGroupsAction act = new UserGroupsAction();
+			String value = request.getParameter("group");
+			Integer id = Integer.valueOf(value);
+			//Group g = (Group)request.getAttribute("current group");
+			Group g = db.findGroupById(id);
+			System.out.println(g.getId());
+
+			String text  = request.getParameter("text");
+			System.out.println(text);
+			Message m = new Message (u, text, c);
+			db.createMessage(m, g);
+
+			//request.setAttribute(text, g);
+			ShowGroupAction act = new ShowGroupAction();
 			return act.execute(request, db);
-		}		
+		}
 	}
 }

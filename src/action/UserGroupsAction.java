@@ -22,12 +22,9 @@ public class UserGroupsAction implements Action {
 		}
 		else {
 			ArrayList<Group> groups = db.allUserGroups(u.getId());
-			for (Group g: groups) {
-				System.out.println(g.getName());
-			}
-			System.out.println("chew");
-
+			ArrayList<Group> allGroups = db.allGroups();
 			request.setAttribute("groups", groups);
+			request.setAttribute("all groups", allGroups);
 
 			return "userGroups.jsp";
 		}

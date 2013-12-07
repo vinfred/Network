@@ -28,12 +28,10 @@
 			<center><form action="logged" method="post">
 				<table id="login_table">					
 						<tr>
-							<td valign="top"><input  type="text" name="email" maxlength="50" size="30" 
-							placeholder="email"></td>
+							<td valign="top"><input  type="text" name="email" maxlength="50" size="30" placeholder="email"></td>
 						</tr>
 						<tr>
-	 						<td valign="top"><input  type="password" name="password" maxlength="50" size="30"
-	 						placeholder="password"></td>
+	 						<td valign="top"><input  type="password" name="password" maxlength="50" size="30" placeholder="password"></td>
 						</tr>
 						
 						<tr><td>
@@ -52,9 +50,9 @@
 		</div><!-- end .body -->
 		
 		
-		<div class="footer">
+		<footer>
 			<p id="text">footer</p>
-		</div><!-- end .footer -->
+		</footer><!-- end .footer -->
 		
 	</div><!-- end .container -->
 	

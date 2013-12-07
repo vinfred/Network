@@ -5,12 +5,17 @@ body {
 	margin: 0;
 }
 
+form { 
+	display: inline;
+	
+}
+
 ul, ol, dl {
 	padding: 0;
 	margin: 0;
 }
 h1, h2, h3, h4, h5, h6, p {
-	margin-top: 0;	
+	margin: 0;	
 	padding-right: 15px;
 	padding-left: 15px; 
 }
@@ -31,25 +36,25 @@ a:hover, a:active, a:focus {
 .container {
 	position:static;
 	width: 1000px;
-	height:100%;
+	height:auto;
 	margin: 0 auto;
-
 	z-index:1;
 }
 
-.footer {
+footer {
 	background-color: #FFFF99;
 	margin: 0px;
 	height: 150px;
-	width:auto;
+	width: 100%;
 	z-index:2;
+	position: static;
 }
 
 .body {
 	top:190px;
 	width:auto;
 	top: 250px;
-	height:auto;
+	height: auto;
 	min-height: 500px;
 	bottom:15px;
 	z-index:2;
@@ -71,6 +76,71 @@ a:hover, a:active, a:focus {
 	padding: 50px ;
 }
 
+#login_table {
+	padding: auto;
+}
+
+.top {
+	background-color: rgba(66,65,60,0.7);
+	z-index: 10;
+	width: 100%;
+	position:fixed;
+}
+
+.top-nav {
+	width:100%;
+	text-align:center;
+
+}
+
+.sidebar {
+	height:auto;
+	min-height: 500px;
+	width: 200px;
+	/*background-color:#dee6e7;*/
+	border-right: #dee6e7 dotted;
+	float:left;
+}
+
+.main {
+	height:auto;
+	min-height: 500px;
+	padding: 50px;
+	float:left;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding:50px;
+}
+
+.sidebar a:link, a:visited {
+	text-decoration: none;
+	color: rgb(48,131,133) ;
+}
+
+.sidebar a:hover, a:active, a:focus {
+	text-decoration: underline;
+	color: rgb(48,131,133) ;
+}
+
+.addGroup {
+	float:left;
+}
+
+.smallHeading {
+	font-family: 'Bad Script', cursive;
+	font-size: 25px;
+	padding-top: 10px;
+}
+
+section {
+    padding:10px;
+    /*display:inline-block;*/
+    margin:0 auto;
+    /*float:center;*/
+    width: 1000px;
+}
 .logo {
 	padding-top:5px;
 	color: orange;
@@ -97,50 +167,17 @@ a:hover, a:active, a:focus {
 	color: orange ;
 }
 
-#login_table {
-	padding: auto;
+table.messages {
+	border: black solid thin;
+	width: 500px;
+	border-collapse: collapse;
 }
 
-.top {
-	background-color: rgba(66,65,60,0.7);
-	z-index: 10;
-	width: 100%;
-	position:fixed;
+table.messages tr{
+	border: black solid thin;
+	width: 500px;
 }
 
-.top-nav {
-	width:100%;
-	padding-right: auto;
-	padding-left: auto;
+.mes_form {
+	float: right;
 }
-
-.sidebar {
-	height:auto;
-	min-height: 500px;
-	width: 200px;
-	background-color:#dee6e7;
-	float:left;
-}
-
-.main {
-	height:auto;
-	min-height: 500px;
-	padding: 50px;
-	float:left;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding:50px;
-}
-
-.sidebar a:link, a:visited {
-	text-decoration: none;
-	color: rgb(48,131,133) ;
-}
-
-.sidebar a:hover, a:active, a:focus {
-	text-decoration: underline;
-	color: rgb(48,131,133) ;
-}
-

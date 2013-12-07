@@ -30,7 +30,7 @@
   </context-param>
   <context-param>
   	<param-name>database</param-name>
-  	<param-value>ee_network</param-value>
+  	<param-value>ee_network?characterEncoding=utf8</param-value>
   </context-param>
   <context-param>
   	<param-name>user</param-name>
@@ -40,6 +40,8 @@
   	<param-name>password</param-name>
   	<param-value>booboo</param-value>
   </context-param>
+  
+
   
   
 </web-app>

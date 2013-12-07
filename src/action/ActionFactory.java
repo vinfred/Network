@@ -22,17 +22,16 @@ public class ActionFactory {
 		hash.put ("/addGroup", new AddGroupAction());
 		hash.put ("/deleteGroup", new DeleteGroupAction());
 		hash.put ("/editGroup", new EditGroupAction());
-
+		hash.put ("/saveGroup", new SaveGroupAction());
+		hash.put ("/showGroup", new ShowGroupAction());
+		hash.put ("/follow", new FollowGroupAction());
+		hash.put ("/addMessage", new AddMessageAction());
+		hash.put ("/deleteMessage", new DeleteMessageAction());
 	}
 
 	public static Action getAction (HttpServletRequest request) {
 		String url = request.getPathInfo();
 		System.out.println(url);
-		System.out.println(request.getRequestURL());
-		System.out.println(request.getRequestURI());
-		System.out.println(request.getPathInfo());
-		//System.out.println(request.get);
-
 		return hash.get(url);
 	}
 

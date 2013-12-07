@@ -18,7 +18,7 @@ public class DeleteGroupAction implements Action {
 			return act.execute(request, db);
 		}
 		else {
-			String value = request.getParameter("id");
+			String value = request.getParameter("group");
 			Integer id = Integer.valueOf(value);
 
 			db.deleteGroup(db.findGroupById(Integer.valueOf(id)));

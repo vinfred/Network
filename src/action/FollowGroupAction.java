@@ -3,30 +3,29 @@ package action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import mod.Group;
 import mod.User;
 import db.BaseDao;
 
-public class EditGroupAction implements Action {
+public class FollowGroupAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
 		HttpSession session = request.getSession();
-		User u = (User)session.getAttribute("loggedUser");
+		User user = (User)session.getAttribute("loggedUser");
 
-		if (u==null) {
+		if (user==null) {
 			LoginAction act = new LoginAction();
 			return act.execute(request, db);
 		}
 		else {
-			String value = request.getParameter("id");
+			String value = request.getParameter("group");
 			Integer id = Integer.valueOf(value);
-			Group g = db.findGroupById(id);
-			request.getSession().setAttribute("group id", id);
-			session.setAttribute("group", g);
+			System.out.println(id);
+			db.addUserToGroup(user, db.findGroupById(id));
 
-			return "editGroup.jsp";
+			UserGroupsAction act = new UserGroupsAction();
+			return act.execute(request, db);
 		}
-
 	}
+
 }

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css">
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" >
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>Google Chew::Profile</title>
 </head>
 <body>
 		
@@ -15,7 +15,7 @@
 			<div class="logo">Google Chew</div>
 			<div class="login"><table >
 					<tr><td>
-						<%out.print("<a href=\".\\user\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>
+						<%out.print("<a href=\".\\profile\">"+((User)session.getAttribute("loggedUser")).getEmail()+"</a>");%>
 					</td></tr>
 					<tr><td>
 						<a href=".\logOut">Log Out</a>
@@ -81,9 +81,9 @@
 		</div><!-- end .body -->
 		
 		
-		<div class="footer">
+		<footer>
 			<p id="text">footer</p>
-		</div><!-- end .footer -->
+		</footer><!-- end .footer -->
 		
 	</div><!-- end .container -->
 	

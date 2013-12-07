@@ -4,10 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import mod.Group;
+import mod.Message;
 import mod.User;
 import db.BaseDao;
 
-public class EditGroupAction implements Action {
+public class DeleteMessageAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, BaseDao db) {
@@ -19,14 +20,17 @@ public class EditGroupAction implements Action {
 			return act.execute(request, db);
 		}
 		else {
-			String value = request.getParameter("id");
+			String value = request.getParameter("message");
 			Integer id = Integer.valueOf(value);
-			Group g = db.findGroupById(id);
-			request.getSession().setAttribute("group id", id);
-			session.setAttribute("group", g);
+			Message m = db.findMessageById(Integer.valueOf(id));
+			System.out.println("message text: "+m.getText());
+			db.deleteMessage(m);
 
-			return "editGroup.jsp";
-		}
-
+			Group g = db.findMessageGroup(m);
+			//request.setParameter("group", g.getId());
+			ShowGroupAction act = new ShowGroupAction();
+			return act.execute(request, db);
+		}	
 	}
+
 }
